@@ -36,9 +36,9 @@ Selon le README de GeoNames, le fichier contient les colonnes suivantes :
 | 18 | modification date | Date de modification |
 
 ### 1.3 Téléchargement
-**Status** : Terminé 
-**Date de téléchargement** : 13 Aout 2025 a 12∶34∶37 PM GMT
-**Taille du fichier** : 314.6 KB
+- **Status** : Terminé 
+- **Date de téléchargement** : 13 Aout 2025 a 12∶34∶37 PM GMT
+- **Taille du fichier** : 314.6 KB
 
 ---
 ## 2. Prétraitement des données
@@ -71,3 +71,29 @@ df.to_csv("burkina_location.csv", index=False)
 - **Validation** : Succès
 
 ---
+## 3. Opérations d'extraction et d'analyse
+
+### 3.1 Extraction des lieux contenant "gounghin"
+- **Critère de recherche** : Nom contenant "gounghin" (insensible à la casse)
+- **Code utilisé** :
+```python
+gounghin_df = df[df['location_name'].str.contains("gounghin", case=False, na=False)]
+gounghin_df.to_csv("gounghin.csv", index=False)
+```
+- **Nombre de résultats** : 10 lieux
+- **Fichier généré** : [`gounghin.csv`](./gounghin.csv)
+
+**Détail des lieux trouvés :**
+| ID | Nom du lieu | Latitude | Longitude |
+|---|---|---|---|
+| 2353306 | Gounghin | 12.06677 | -1.42134 |
+| 2360473 | Gounghin | 12.62488 | -1.36398 |
+| 2570204 | Gounghin | 12.31436 | -1.379 |
+| 10342749 | Gounghin | 12.06667 | -0.15 |
+| 10629032 | BICIAB // Gounghin | 12.35921 | -1.54273 |
+| 11257296 | Gounghin Department | 12.06671 | -0.15484 |
+| 11900526 | Gounghin Nord | 12.3612 | -1.55055 |
+| 11900528 | Zone Industrielle de Gounghin | 12.36631 | -1.54137 |
+| 11900619 | Gounghin Sud | 12.35298 | -1.54342 |
+| 11900680 | Gounghin | 12.35895 | -1.54442 |
+
