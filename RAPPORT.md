@@ -158,4 +158,36 @@ lieux_min = A_to_P_df[
 - **Komoé** représente le point le plus méridional (sud) du Burkina Faso dans notre dataset A-P
 - **Banifing** représente le point le plus occidental (ouest) du Burkina Faso dans notre dataset A-P
 
+### 3.4 Filtrage par coordonnées
+- **Critère** : `lat >= 11` ET `lon <= 0.5`
+- **Code utilisé** :
+```python
 
+df['lat'] = df['lat'].astype(float)
+df['long'] = df['long'].astype(float)
+
+coord_df = df[
+    (df['lat'] >= 11) & 
+    (df['long'] <= 0.5)
+]
+```
+- **Nombre de lieux trouvés** : 9 466 lieux
+- **Pourcentage du dataset** : 79.2% (9466/11958)
+
+**Échantillon des lieux trouvés :**
+
+| ID | Nom du lieu | Latitude | Longitude |
+|---|---|---|---|
+| 2353158 | Zyonguen | 12.36667 | -0.45000 |
+| 2353159 | Zyiliwèlè | 12.38333 | -2.73333 |
+| 2353160 | Zyanko | 12.78333 | -0.41667 |
+| 2353161 | Zouta | 13.14908 | -1.28197 |
+| 2353162 | Zourtenga | 12.95741 | -1.28745 |
+| ... | ... | ... | ... |
+| 13494828 | Tounougou | 11.21462 | -0.06965 |
+| 13494829 | Karmé | 11.66346 | 0.08201 |
+| 13494830 | Damdamkom | 11.14989 | 0.43655 |
+| 13494831 | Dazenré | 11.43801 | 0.21293 |
+| 13494832 | Pogoyoaguen | 11.44725 | 0.21074 |
+
+*Note : 9 466 lignes au total dans le dataset A-P*
