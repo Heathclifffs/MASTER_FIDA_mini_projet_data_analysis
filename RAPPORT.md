@@ -97,3 +97,33 @@ gounghin_df.to_csv("gounghin.csv", index=False)
 | 11900619 | Gounghin Sud | 12.35298 | -1.54342 |
 | 11900680 | Gounghin | 12.35895 | -1.54442 |
 
+### 3.2 Extraction des lieux A-P
+- **Critère** : Première lettre du nom entre 'A' et 'P' (ordre alphabétique, insensible à la casse)
+- **Code utilisé** :
+```python
+# Filtrer les lieux dont la première lettre est entre A et P (insensible à la casse)
+A_to_P_df = df[df['location_name'].str[0].str.upper().between('A', 'P')]
+# Trier par ordre alphabétique (insensible à la casse)
+A_to_P_df = A_to_P_df.sort_values(by='location_name', key=lambda x: x.str.upper())
+```
+- **Nombre de résultats** : 8 306 lieux
+- **Pourcentage du dataset** : 69.4% (8306/11958)
+
+**Échantillon des résultats (premiers et derniers) :**
+
+| ID | Nom du lieu | Latitude | Longitude |
+|---|---|---|---|
+| 6913771 | Abanda | 15.06808 | -0.59805 |
+| 2363251 | Abanga | 13.32429 | 0.31151 |
+| 11980339 | Abassi | 12.27728 | -1.13662 |
+| 6874881 | Abaye | 13.4408 | -3.9019 |
+| 2363249 | Abra | 13.0914 | -1.34752 |
+| ... | ... | ... | ... |
+| 2570015 | Pézinga | 12.05298 | -1.47002 |
+| 2356655 | Pê | 11.3 | -3.53333 |
+| 2356453 | Pô | 12.3 | -2.61667 |
+| 2356454 | Pô | 11.16972 | -1.145 |
+| 6296406 | Pô Airport | 11.17854 | -1.14498 |
+
+*Note : 8 306 lignes au total dans le dataset A-P*
+
