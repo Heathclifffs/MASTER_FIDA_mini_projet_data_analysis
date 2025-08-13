@@ -36,8 +36,8 @@ Selon le README de GeoNames, le fichier contient les colonnes suivantes :
 | 18 | modification date | Date de modification |
 
 ### 1.3 Téléchargement
-**Status** : Terminé  
-**Date de téléchargement** : 13 Aout 2025  
+**Status** : Terminé 
+**Date de téléchargement** : 13 Aout 2025 
 **Taille du fichier** : 314.6 KB
 
 ---

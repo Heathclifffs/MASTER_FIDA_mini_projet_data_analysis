@@ -1,4 +1,7 @@
-# MASTER_FIDA_mini_projet_data_analysis
+# MASTER_FIDA_mini_projet_data_analysis 
+
+## Docummentationm  
+- [Rapport du mini projet](RAPPORT.md)  
 
 # Événement de cours
 
