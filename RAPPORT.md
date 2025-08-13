@@ -191,3 +191,31 @@ coord_df = df[
 | 13494832 | Pogoyoaguen | 11.44725 | 0.21074 |
 
 *Note : 9 466 lignes au total dans le dataset A-P*
+
+## 5. Export des résultats vers Excel
+**Fichier généré** : [``mini_projet.xlsx``](./mini_projet.xlsx)
+**Contenu** :
+- Feuille `gounghin` : Données de la section 3.1 
+- Feuille `A_to_P` : Données de la section 3.2 
+
+- **Code utilisé** :
+```python
+
+with pd.ExcelWriter("mini_projet.xlsx") as writer:
+    gounghin_df.to_excel(writer, sheet_name="gounghin", index=False)
+    A_to_P_df.to_excel(writer, sheet_name="A_to_P", index=False)
+print("Fichier Excel 'mini_projet.xlsx' créé avec succès !")
+
+]
+```
+**Resultats export**
+
+| Métrique | Valeur |
+|----------|--------|
+| Fichier généré | `mini_projet.xlsx` |
+| Taille du fichier | 262.5 KB |
+| Total feuilles | 2 |
+| Lignes (gounghin) | 10 |
+| Lignes (A_to_P) | 8 306 |
+| Format | Excel (.xlsx) |
+
