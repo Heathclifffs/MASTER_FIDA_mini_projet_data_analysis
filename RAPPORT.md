@@ -37,7 +37,37 @@ Selon le README de GeoNames, le fichier contient les colonnes suivantes :
 
 ### 1.3 Téléchargement
 **Status** : Terminé 
-**Date de téléchargement** : 13 Aout 2025 
+**Date de téléchargement** : 13 Aout 2025 a 12∶34∶37 PM GMT
 **Taille du fichier** : 314.6 KB
+
+---
+## 2. Prétraitement des données
+
+### 2.1 Extraction et nettoyage
+- **Fichier source** : `BF.txt` (extrait de `BF.zip`)
+- **Séparateur** : Tabulation (`\t`)
+- **Colonnes conservées** :
+  - `geonameid` (colonne 0) → `ID`
+  - `name` (colonne 1) → `location_name` 
+  - `latitude` (colonne 4) → `lat`
+  - `longitude` (colonne 5) → `long`
+
+### 2.2 Code utilisé
+```python
+# Dézipper le fichier dans un dossier data
+with zipfile.ZipFile("BF.zip", "r") as zip_ref:
+    zip_ref.extractall("data")
+
+# Charger le fichier BF.txt et conserver les colonnes nécessaires
+df = pd.read_csv("data/BF.txt", sep="\t", header=None, dtype=str)
+df = df[[0, 1, 4, 5]]
+df.columns = ["ID", "location_name", "lat", "long"]
+df.to_csv("burkina_location.csv", index=False)
+```
+
+### 2.3 Résultats du prétraitement
+- **Nombre total de lieux** : 11 958
+- **Fichier généré** : [`burkina_location.csv`](./burkina_location.csv)
+- **Validation** : Succès
 
 ---
