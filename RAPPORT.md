@@ -127,3 +127,35 @@ A_to_P_df = A_to_P_df.sort_values(by='location_name', key=lambda x: x.str.upper(
 
 *Note : 8 306 lignes au total dans le dataset A-P*
 
+### 3.3 Coordonnées minimales
+- **Code utilisé** :
+```python
+# Conversion en float pour les calculs
+A_to_P_df['lat'] = A_to_P_df['lat'].astype(float)
+A_to_P_df['long'] = A_to_P_df['long'].astype(float)
+
+# Recherche des valeurs minimales
+min_lat = A_to_P_df['lat'].min()
+min_long = A_to_P_df['long'].min()
+
+# Identification des lieux correspondants
+lieux_min = A_to_P_df[
+    (A_to_P_df['lat'].astype(float) == min_lat) |
+    (A_to_P_df['long'].astype(float) == min_long)
+]
+```
+
+**Résultats :**
+- **Latitude minimale** : 5.21609° (point le plus au sud)
+- **Longitude minimale** : -5.65968° (point le plus à l'ouest)
+
+| ID | Nom du lieu | Latitude | Longitude | Position géographique |
+|---|---|---|---|---|
+| 2359210 | **Komoé** | **5.21609** | -3.71793 | Latitude la plus au **sud** |
+| 2357400 | **Banifing** | 12.01147 | **-5.65968** | Longitude la plus à l'**ouest** |
+
+**Remarques géographiques :**
+- **Komoé** représente le point le plus méridional (sud) du Burkina Faso dans notre dataset A-P
+- **Banifing** représente le point le plus occidental (ouest) du Burkina Faso dans notre dataset A-P
+
+
