@@ -219,3 +219,115 @@ print("Fichier Excel 'mini_projet.xlsx' créé avec succès !")
 | Lignes (A_to_P) | 8 306 |
 | Format | Excel (.xlsx) |
 
+---
+
+## 6. Visualisation cartographique (Optionnel)
+
+### 6.1 Carte des lieux "Gounghin"
+- **Code utilisé** :
+```python
+import folium
+
+# Créer une carte centrée sur le Burkina Faso
+m = folium.Map(location=[12.2383, -1.5616], zoom_start=6)
+
+# Ajouter des marqueurs pour chaque lieu contenant "gounghin"
+for _, row in gounghin_df.iterrows():
+    folium.Marker(
+        location=[float(row['lat']), float(row['long'])],
+        popup=row['location_name']
+    ).add_to(m)
+
+# Sauvegarder la carte
+m.save("gounghin_map.html")
+```
+- **Fichier généré** : [`gounghin_map.html`](./gounghin_map.html)
+- **Description** : Carte interactive avec marqueurs précis pour les 10 lieux contenant "gounghin"
+- **Fix appliqué** : Conversion explicite des coordonnées en `float()` pour éviter les erreurs de type²
+
+### 6.2 Carte générale du Burkina Faso
+- **Code utilisé** :
+```python
+# Créer la carte centrée sur le Burkina Faso
+burkina_map = folium.Map(location=[12.2383, -1.5616], zoom_start=6)
+
+# Ajouter tous les lieux comme marqueurs circulaires
+for _, row in df.iterrows():
+    folium.CircleMarker(
+        location=[row['lat'], row['long']],
+        radius=3,
+        popup=row['location_name'],
+        color='green',
+        fill=True,
+        fill_color='green'
+    ).add_to(burkina_map)
+
+# Sauvegarder la carte
+burkina_map.save("burkina_map.html")
+```
+- **Fichier généré** : [`burkina_map.html`](./burkina_map.html)
+- **Description** : Carte interactive complète avec tous les 11 958 lieux du Burkina Faso
+- **Style** : Marqueurs circulaires verts (radius=3) pour une meilleure lisibilité
+
+---
+
+## 7. Fichiers produits
+
+- [`burkina_location.csv`](./burkina_location.csv) - Dataset principal nettoyé
+- [`gounghin.csv`](./gounghin.csv) - Lieux contenant "gounghin"
+- [`mini_projet.xlsx`](./mini_projet.xlsx) - Fichier Excel avec 2 feuilles
+- [`gounghin_map.html`](./gounghin_map.html) - Carte interactive des lieux Gounghin
+- [`burkina_map.html`](./burkina_map.html) - Carte interactive complète du Burkina Faso
+- [`Extraction_sous-ensemble_de_datas.ipynb`](./Extraction_sous-ensemble_de_datas.ipynb) - Code source (Jupyter)
+- Repos GitHub : [`MASTER_FIDA_mini_projet_data_analysis`](https://github.com/Heathclifffs/MASTER_FIDA_mini_projet_data_analysis)
+
+---
+
+## 8. Références et ressources
+
+### 8.1 Sources de données
+1. **GeoNames** - Base de données géographique mondiale 
+   URL: https://www.geonames.org/ 
+   Documentation: https://download.geonames.org/export/dump/readme.txt
+
+### 8.2 Documentation technique
+2. **Pandas Documentation** - Manipulation de données 
+   URL: https://pandas.pydata.org/docs/ 
+   Référence spécifique: `str.contains()`, `str.between()`, `astype()`
+
+3. **Folium Documentation** - Visualisation cartographique 
+   URL: https://python-visualization.github.io/folium/ 
+   Tutoriel: https://folium.readthedocs.io/en/latest/quickstart.html
+
+4. **Excel Export avec Pandas** 
+   URL: https://pandas.pydata.org/docs/reference/api/pandas.ExcelWriter.html 
+   Guide: https://realpython.com/working-with-large-excel-files-in-pandas/
+
+### 8.3 Résolution des problèmes techniques
+5. **Gestion des types de données (Fix 1.0.1)**
+   Problème: Comparaisons échouent avec des chaînes 
+   Solution: Conversion explicite avec `astype(float)` 
+   Référence: https://stackoverflow.com/questions/15891038/change-data-type-of-columns-in-pandas
+
+6. **Tri insensible à la casse (Fix 1.0.1)** 
+   Problème: Ordre alphabétique incorrect avec majuscules/minuscules 
+   Solution: Utilisation du paramètre `key=lambda x: x.str.upper()` 
+   Référence: https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sort_values.html
+
+7. **Filtrage de chaînes avec Pandas** 
+   Méthode: `str.contains(pattern, case=False, na=False)` 
+   Référence: https://pandas.pydata.org/docs/reference/api/pandas.Series.str.contains.html
+
+### 8.4 Ressources géographiques
+8. **Coordonnées du Burkina Faso** 
+   Centre approximatif: 12.2383°N, 1.5616°W 
+   Source: https://www.latlong.net/country/burkina-faso-35.html
+
+9. **Codes ISO des pays** 
+   Burkina Faso: BF (ISO 3166-1 alpha-2) 
+   Source: https://www.iso.org/obp/ui/#iso:code:3166:BF
+
+---
+
+*Rédigé par Yipene Harold Ezekiel BASSOLE - Data Processing & Data Visualization - 13 Août 2025*
+
